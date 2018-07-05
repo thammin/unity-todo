@@ -12,7 +12,7 @@ namespace TodoMvp
         public IReadOnlyReactiveProperty<string> Description { get { return _description; } }
 
         /// <summary>
-        /// 初期化(本来はIEnumeratorだけど割愛する)
+        /// 初期化
         /// </summary>
         public TodoMvpItemModel()
         {

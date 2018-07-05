@@ -18,7 +18,7 @@ namespace TodoMvp
         private Image _checkMark;
 
         /// <summary>
-        /// 初期化
+        /// 初期化(本来はIEnumeratorだけど割愛する)
         /// </summary>
         public void Initialize()
         {

@@ -23,8 +23,7 @@ namespace TodoMvp
 
         public void AddItem(GameObject item)
         {
-            var t = item.GetComponent<RectTransform>();
-            t.SetParent(_listContainer, false);
+            item.transform.SetParent(_listContainer, false);
         }
 
         public void SetTemp(string value)

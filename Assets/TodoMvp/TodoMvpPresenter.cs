@@ -25,24 +25,10 @@ namespace TodoMvp
             _models = new List<TodoMvpItemModel>();
             for (var i = 0; i < 5; i++)
             {
-                var model = new TodoMvpItemModel();
-                model.SetDescription($"item {i}");
-                _models.Add(model);
+                AddItem($"item {i}");
             }
 
-            InitializePrefabs();
             BindEvents();
-        }
-
-        private void InitializePrefabs()
-        {
-            _models.ForEach(model =>
-            {
-                var instance = Instantiate(_itemPrefab);
-                var presenter = instance.GetComponent<TodoMvpItemPresenter>();
-                presenter.Initialize(model);
-                _view.AddItem(instance);
-            });
         }
 
         private void BindEvents()
@@ -52,15 +38,18 @@ namespace TodoMvp
                 .AddTo(this);
 
             _view.Button.OnClickAsObservable()
-                .Subscribe(AddItem)
+                .Subscribe(u =>
+                {
+                    AddItem(_view.Input.text);
+                    _view.Input.text = "";
+                })
                 .AddTo(this);
         }
 
-        private void AddItem(Unit u)
+        private void AddItem(string description)
         {
             var model = new TodoMvpItemModel();
-            model.SetDescription(_view.Input.text);
-            _view.Input.text = "";
+            model.SetDescription(description);
             _models.Add(model);
 
             var instance = Instantiate(_itemPrefab);
