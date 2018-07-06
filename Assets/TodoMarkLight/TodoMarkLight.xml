@@ -1,0 +1,25 @@
+<TodoMarkLight>
+    <UserInterface RenderMode="ScreenSpaceCamera" UIScaleMode="ScaleWithScreenSize" ReferenceResolution="640,480">
+        <Group>
+            <Label Text="{Input}" Width="90%" Height="10" Margin="0,10"></Label>
+
+            <Group Orientation="Horizontal" Spacing="10" Height="100">
+                <InputField Width="400" Text="{Input}"></InputField>
+                <Button Text="Button" Click="AddItem"></Button>
+            </Group>
+            
+            <Region Width="90%" Height="150">
+                <Panel CanScrollHorizontally="False" HorizontalScrollbarVisibility="Remove">
+                    <Region>
+                        <List Items="{Items}">
+                            <ListItem IsTemplate="True">
+                                <TodoMarkLightItem />
+                            </ListItem>
+                        </List>
+                    </Region>
+                </Panel>
+            </Region>
+        </Group>
+    </UserInterface>
+    <EventSystem />
+</TodoMarkLight>

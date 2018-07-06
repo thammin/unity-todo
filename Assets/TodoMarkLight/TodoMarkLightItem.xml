@@ -1,0 +1,7 @@
+<TodoMarkLightItem>
+    <Group Orientation="Horizontal" Alignment="Left" Margin="10">
+        <CheckBox IsChecked="{IsCheck}" Click="ToggleCheckMark" />
+        <Label Text="{#Item.Description}" />
+        <Image Color="green" Width="15" Height="15" IsVisible="{IsShowCheckMark}" />
+    </Group>
+</TodoMarkLightItem>
