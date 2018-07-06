@@ -2,6 +2,8 @@
 
 Try to implement TODO in Unity using different data-binding framework or design patterns.
 
+Build on Unity 2018.1.3f1
+
 ### Implementations
 
 - [MVP + UniRx](https://developers.cyberagent.co.jp/blog/archives/4262/) -> [Sample](./Assets/TodoMvp)
