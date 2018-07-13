@@ -26,7 +26,7 @@ namespace POC
                 }
                 else
                 {
-                    _isShallowNode = GetComponent<POCList>() != null;
+                    _isShallowNode = GetComponent<POCList>() != null && GetComponent<POCShow>() != null;
                     _isChecked = true;
                     return _isShallowNode;
                 }

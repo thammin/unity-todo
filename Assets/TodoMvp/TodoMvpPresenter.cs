@@ -23,7 +23,7 @@ namespace TodoMvp
 
             // 本来はWorkからデータをモデルを作るけど割愛する
             _models = new List<TodoMvpItemModel>();
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 500; i++)
             {
                 AddItem($"item {i}");
             }
