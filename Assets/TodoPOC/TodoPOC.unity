@@ -1339,6 +1339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177e58e71b1934535b212a379fe720fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Parent: {fileID: 0}
+  Children: []
   Src: {fileID: 382543888}
   SrcProperty: Todos
 --- !u!114 &1573960861
@@ -1470,7 +1472,6 @@ GameObject:
   - component: {fileID: 1669794899}
   - component: {fileID: 1669794901}
   - component: {fileID: 1669794900}
-  - component: {fileID: 1669794902}
   - component: {fileID: 1669794903}
   m_Layer: 5
   m_Name: Temp
@@ -1536,24 +1537,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1669794898}
---- !u!114 &1669794902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1669794898}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0feacff94664a444581b1e50314a0985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Destination: {fileID: 1669794900}
-  m_DestinationProperty: text
-  m_Direction: 0
-  m_Source: {fileID: 382543888}
-  m_SourceProperty: TypingText
-  m_Update: 0
-  m_UpdateInEditMode: 0
 --- !u!114 &1669794903
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,10 +16,8 @@ namespace TodoPOC
         {
             // todo 一覧
             public List<TodoPOCItem.Data> Todos { get; set; }
-
             // TODO computedみたいの仕組み
             public TodoPOCItem.Data FirstTodo { get; set; }
-
             // 入力中の text
             public string TypingText { get; set; }
         }
@@ -47,10 +45,10 @@ namespace TodoPOC
         /// <summary>
         /// (子供->親方)データある、子供もある
         /// </summary>
-        public override void Mounted()
-        {
-            Debug.Log($"__Parent mounted__ has children {Children.Count}");
-        }
+        // public override void Mounted()
+        // {
+        //     Debug.Log($"__Parent mounted__ has children {Children.Count}");
+        // }
 
         /// <summary>
         /// todo 追加
