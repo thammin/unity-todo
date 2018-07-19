@@ -22,7 +22,20 @@ namespace TodoPOC
             public string TypingText { get; set; }
         }
 
+        public class Computed
+        {
+            Data DTO;
+            public TodoPOCItem.Data FirstTodo => DTO.Todos.First();
+
+            public Computed(Data dto)
+            {
+                DTO = dto;
+            }
+        }
+
         public Data DTO { get; set; }
+
+        public Computed CTO { get; set; }
 
         /// <summary>
         /// (親方->子供)データあるけど、子供まだない

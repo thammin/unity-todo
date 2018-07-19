@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using POC;
 using System.Linq;
 using UniRx;
+using LazyCache;
+using System;
+using UnityEngine.Profiling;
 
 namespace TodoPOC2
 {
@@ -36,7 +39,8 @@ namespace TodoPOC2
                 .Range(1, 500)
                 .Select(v => new TodoPOC2Item.Data()
                 {
-                    Description = new ReactiveProperty<string>($"test {v}")
+                    Description = new ReactiveProperty<string>($"test {v}"),
+                    IsCheck = new ReactiveProperty<bool>(true)
                 })
                 .ToList()
             );
@@ -44,6 +48,22 @@ namespace TodoPOC2
             DTO.TypingText = new ReactiveProperty<string>();
 
             Debug.Log($"__Parent initialize__ no children {Children.Count}");
+
+            // IAppCache cache = new CachingService();
+            // Func<string> complexObjectFactory = () => "result";
+            // string cachedResults = cache.GetOrAdd("uniqueKey", complexObjectFactory);
+        }
+
+        public override void BeforeRouteEnter(POCRouter.Route To, POCRouter.Route From, Action<bool> next)
+        {
+            Debug.Log("hairu");
+            next(true);
+        }
+
+        public override void BeforeRouteLeave(POCRouter.Route To, POCRouter.Route From, Action<bool> next)
+        {
+            Debug.Log("きた");
+            next(true);
         }
 
         /// <summary>
@@ -59,16 +79,52 @@ namespace TodoPOC2
         /// </summary>
         public void AddItem()
         {
+            //POCRouter.To("Home");
+            //return;
             DTO.Todos.Add(new TodoPOC2Item.Data()
             {
-                Description = new ReactiveProperty<string>(DTO.TypingText.Value)
+                Description = new ReactiveProperty<string>(DTO.TypingText.Value),
+                IsCheck = new ReactiveProperty<bool>(true)
             });
             DTO.TypingText.Value = "";
+
+            // var info = GetStudentInfo((id: "100-000-1000", index: 5));
+            // Debug.Log($"Name: {info.name}, Age: {info.age}");
+            // MoveTo("abc", new Dictionary<string, object>(){
+            //     { "a", 1 },
+            //     { "b", 2 },
+            //     { "c", true}
+            // });
         }
 
         public void SetTypingText(string input)
         {
             DTO.TypingText.Value = input;
+        }
+
+        public void MoveTo(string target, Dictionary<string, object> input)
+        {
+            // foreach (var i in this.GetType().GetMethod("reMoveTo").GetParameters())
+            // {
+
+            // }
+            // foreach (var item in input)
+            // {
+            //     item.Key
+            // }
+        }
+
+        public void reMoveTo()
+        {
+            //Debug.Log(a);
+            //Debug.Log(b);
+            //Debug.Log(c);
+        }
+
+        public (string name, int age) GetStudentInfo((string id, int index) input)
+        {
+            // Search by ID and find the student.
+            return (input.id, input.index);
         }
     }
 }

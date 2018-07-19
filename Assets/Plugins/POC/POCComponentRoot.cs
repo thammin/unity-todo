@@ -6,8 +6,22 @@ namespace POC
 {
     public class POCComponentRoot : POCComponent
     {
+        private static POCComponentRoot _instance;
+        public static POCComponentRoot Instance { get { return _instance; } }
+
+        public string EntryPage = "";
+
         void Awake()
         {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+
             Debug.Log("__Core Awake__");
 
             var timer = System.Diagnostics.Stopwatch.StartNew();
@@ -38,7 +52,7 @@ namespace POC
         /// Call child.Initialize() recursively by depth first
         /// </summary>
         /// <param name="node"></param>
-        void InitializeChildren(Transform node, POCComponent parent)
+        public static void InitializeChildren(Transform node, POCComponent parent)
         {
             var transform = node.transform;
 
@@ -47,6 +61,15 @@ namespace POC
                 var c = child.GetComponent<POCComponent>();
                 c?.InitializeBase(parent);
                 InitializeChildren(child, c ?? parent);
+            }
+        }
+
+        public static void DestroyChildren(POCComponent node)
+        {
+            foreach (var child in node.Children)
+            {
+                DestroyChildren(child);
+                child.DestroyBase();
             }
         }
 

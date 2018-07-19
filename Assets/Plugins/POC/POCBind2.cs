@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace POC
 {
-    public class POCBind2 : MonoBehaviour
+    public class POCBind2 : POCComponent
     {
         [SerializeField]
         private Component _src;
@@ -27,7 +27,7 @@ namespace POC
             set { _srcProperty = value; }
         }
 
-        private void Start()
+        public override void Initialize()
         {
             var dataProperty = Src.GetType().GetProperty("DTO");
             var data = dataProperty.GetValue(Src);
@@ -48,6 +48,21 @@ namespace POC
                 else if (inputField = GetComponent<InputField>())
                 {
                     r.Subscribe(value => inputField.text = value).AddTo(this);
+                }
+            }
+            else if (resultType == typeof(ReactiveProperty<int>))
+            {
+                var r = (ReactiveProperty<int>)result;
+                Text text;
+                InputField inputField;
+
+                if (text = GetComponent<Text>())
+                {
+                    r.Subscribe(value => text.text = value.ToString()).AddTo(this);
+                }
+                else if (inputField = GetComponent<InputField>())
+                {
+                    r.Subscribe(value => inputField.text = value.ToString()).AddTo(this);
                 }
             }
         }

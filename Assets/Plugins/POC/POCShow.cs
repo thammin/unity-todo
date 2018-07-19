@@ -18,6 +18,7 @@ namespace POC
             var data = dataProperty.GetValue(Parent);
             var resultProperty = dataProperty.PropertyType.GetProperty(SrcProperty);
             var result = resultProperty.GetValue(data);
+
             if (result == null)
             {
                 result = new ReactiveProperty<bool>();

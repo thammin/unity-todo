@@ -7,6 +7,7 @@ namespace POC
 {
     public abstract class POCComponent : MonoBehaviour
     {
+
         [HideInInspector]
         public POCComponent Parent;
 
@@ -26,7 +27,8 @@ namespace POC
                 }
                 else
                 {
-                    _isShallowNode = GetComponent<POCList>() != null && GetComponent<POCShow>() != null;
+                    //_isShallowNode = this as POCList || this as POCShow || this as POCBind2;
+                    _isShallowNode = GetComponent<POCList>() != null && GetComponent<POCShow>() != null && GetComponent<POCBind2>() != null;
                     _isChecked = true;
                     return _isShallowNode;
                 }
@@ -44,10 +46,7 @@ namespace POC
                 Parent = parent.Parent;
             }
 
-            if (!IsShallowNode)
-            {
-                Parent.Children.Add(this);
-            }
+            Parent.Children.Add(this);
 
             Initialize();
         }
@@ -57,15 +56,46 @@ namespace POC
             Mounted();
         }
 
-        public virtual void Initialize()
+        public void DestroyBase()
         {
-
+            Parent = null;
+            Children.Clear();
+            GameObject.Destroy(gameObject);
         }
 
-        public virtual void Mounted()
+        #region virtual
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void BeforeRouteEnter(POCRouter.Route To, POCRouter.Route From, System.Action<bool> next)
         {
-
+            next(true);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void BeforeRouteUpdate(POCRouter.Route To, POCRouter.Route From, System.Action<bool> next)
+        {
+            next(true);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void BeforeRouteLeave(POCRouter.Route To, POCRouter.Route From, System.Action<bool> next)
+        {
+            next(true);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void Initialize() { }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void Mounted() { }
+        #endregion
     }
+
+
 }
 
